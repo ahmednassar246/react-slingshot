@@ -11,29 +11,18 @@ jobs:
     <<: *default
     steps:
       - checkout
-      - save_cache:
-          paths:
-            - /src/node_models
-          key: "npm-pacakges"
       - run: npm i    
       - run: npm run lint
   test:
     <<: *default
     steps:
       - checkout
-      - restore_cache:
-          key:
-            - "npm-pacakges"
       - run: npm i
       - run: npm run test
   analyze:
     <<: *default
     steps:
       - checkout
-      - restore_cache:
-          key:
-            - "npm-pacakges"
-      - run: npm i      
       - run: npm audit                 
 
 workflows:
